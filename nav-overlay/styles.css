@@ -1,4 +1,34 @@
-/* Overlay Nav */
+/* OVERLAY NAV */
+body {
+  font-family: sans-serif;
+}
+
+
+.navigation__checkbox {
+  display: none;
+}
+
+/* FUNCTIONALITY */
+/* picking adjacent sibling */
+.navigation__checkbox:checked~.navigation__background {
+  transform: scale(80);
+}
+
+.navigation__checkbox:checked~.navigation__nav {
+  opacity: 1;
+  width: 100%;
+}
+
+.navigation__button {
+  background-color: #213970;
+  height: 7rem;
+  width: 7rem;
+  position: fixed;
+  top: 6rem;
+  left: 6rem;
+  border-radius: 50%;
+  z-index: 20;
+}
 
 .navigation__background {
   /* Makes complete circle for menu button */
@@ -8,5 +38,90 @@
   position: fixed;
   top: 6.5rem;
   left: 6.5rem;
-  background-image: radial-gradient(#85DCB0, #9198e5);
+  background-image: radial-gradient(#213970, #210070);
+  /* So it stays on top of all elements */
+  z-index: 10;
+  transition: transform .8s cubic-bezier(0.68, 0, 0.07, 1);
+
+  /* For the horizontal lines */
+  text-align: center;
+
+  /* transform: scale(80); */
+
+  /* cubic bezier tools */
+  /* https://easings.net/ */
+  /* https://cubic-bezier.com/#.17,.67,.83,.67 */
+}
+
+.navigation__nav {
+  height: 100vh;
+  /* width: 100%; */
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 15;
+
+
+  /* Hides navigation completely when menu is not shown: initial state */
+  opacity: 0;
+  width: 0;
+  transition: all .8s;
+  /*  */
+}
+
+.navigation__menu {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  list-style: none;
+  text-align: center;
+  /* allows menu to disappear without lag .. smooth transition */
+  width: 100%;
+}
+
+.navigation__item {
+  margin: 1rem;
+}
+
+.navigation__link:link,
+.navigation__link:visited {
+  font-size: 3rem;
+  font-weight: 300;
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+/* ICON */
+
+.navigation__icon {
+  position: relative;
+  margin-top: 3.5rem;
+  left: 2rem;
+}
+
+
+.navigation__icon,
+.navigation__icon::before,
+.navigation__icon::after {
+  width: 3rem;
+  height: 2px;
+  background-color: #fff;
+  display: inline-block;
+}
+
+.navigation__icon::before,
+.navigation__icon::after {
+  content: "";
+  position: absolute;
+  left: 0;
+}
+
+.navigation__icon::before {
+  top: -1rem;
+}
+
+.navigation__icon::after {
+  top: 1rem;
 }
