@@ -1,0 +1,188 @@
+/* OVERLAY NAV */
+body {
+  font-family: sans-serif;
+}
+
+
+.navigation__checkbox {
+  display: none;
+}
+
+/* FUNCTIONALITY */
+/* picking adjacent sibling */
+.navigation__checkbox:checked~.navigation__background {
+  transform: scale(80);
+}
+
+.navigation__checkbox:checked~.navigation__nav {
+  opacity: 1;
+  width: 100%;
+}
+
+.navigation__button {
+  background-color: #213970;
+  height: 7rem;
+  width: 7rem;
+  position: fixed;
+  top: 2rem;
+  left: 2rem;
+  border-radius: 50%;
+  z-index: 20;
+  cursor: pointer;
+}
+
+@media (min-width: 375px) and (max-width: 600px) {
+  .navigation__button {
+    height: 4rem;
+    width: 4rem;
+  }
+}
+
+
+
+.navigation__background {
+  /* Makes complete circle for menu button */
+  height: 6rem;
+  width: 6rem;
+  border-radius: 50%;
+  position: fixed;
+  top: 2.5rem;
+  left: 2.5rem;
+  background-image: radial-gradient(#213970, #210070);
+  /* So it stays on top of all elements */
+  z-index: 10;
+  transition: transform .8s cubic-bezier(0.68, 0, 0.07, 1);
+
+  /* For the horizontal lines */
+  text-align: center;
+
+  /* transform: scale(80); */
+
+  /* cubic bezier tools */
+  /* https://easings.net/ */
+  /* https://cubic-bezier.com/#.17,.67,.83,.67 */
+}
+
+@media (min-width: 375px) and (max-width: 600px) {
+  .navigation__background {
+    height: 3rem;
+    width: 3rem;
+  }
+}
+
+.navigation__nav {
+  height: 100vh;
+  /* width: 100%; */
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 15;
+
+
+  /* Hides navigation completely when menu is not shown: initial state */
+  opacity: 0;
+  width: 0;
+  transition: all .8s;
+  /*  */
+}
+
+.navigation__menu {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  list-style: none;
+  text-align: center;
+  /* allows menu to disappear without lag .. smooth transition */
+  width: 100%;
+}
+
+.navigation__item {
+  margin: 1rem;
+}
+
+.navigation__link:link,
+.navigation__link:visited {
+  font-size: 3rem;
+  font-weight: 300;
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+@media (min-width: 375px) and (max-width: 600px) {
+  .navigation__link:link,
+  .navigation__link:visited {
+      font-size: 2rem;
+    }
+}
+
+/* ICON */
+
+.navigation__icon {
+  position: relative;
+  margin-top: 3.5rem;
+  left: 2rem;
+}
+
+@media (min-width: 375px) and (max-width: 600px) {
+  .navigation__icon {
+    margin-top: 2rem;
+    left: 1rem;
+  }
+}
+
+.navigation__icon,
+.navigation__icon::before,
+.navigation__icon::after {
+  width: 3rem;
+  height: 2px;
+  background-color: #fff;
+  display: inline-block;
+}
+
+@media (min-width: 375px) and (max-width: 600px) {
+  .navigation__icon,
+  .navigation__icon::before,
+  .navigation__icon::after {
+    width: 2rem;
+  }
+}
+
+.navigation__icon::before,
+.navigation__icon::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  transition: all .2s;
+}
+
+.navigation__icon::before {
+  top: -.8rem;
+}
+
+.navigation__icon::after {
+  top: .8rem;
+}
+
+/* When you hover over the nav button, make the lines bounce a bit */
+.navigation__button:hover .navigation__icon::before {
+  top: -1rem;
+}
+
+.navigation__button:hover .navigation__icon::after {
+  top: 1rem;
+}
+
+/* When you click on nav button, makes the hamburger icon switch to an X for close/cancel */
+.navigation__checkbox:checked + .navigation__button .navigation__icon {
+  background-color: transparent;
+}
+.navigation__checkbox:checked + .navigation__button .navigation__icon::before {
+  top: 0;
+  transform: rotate(45deg);
+}
+.navigation__checkbox:checked + .navigation__button .navigation__icon::after {
+  top: 0;
+  transform: rotate(-45deg);
+}
